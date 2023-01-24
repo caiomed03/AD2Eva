@@ -91,15 +91,8 @@ public class AlumnoDAO {
 
     public boolean updateAlumno(Alumno x) {
         try {
-            String query = String.format("for $x in //alumnos/alumno where $x/id = %d return update replace $x with %s", x.getId(), x.toXML());
-            ResourceSet result = service.query(query);
-            System.out.println("a");
-            // Iterate over the results
-            ResourceIterator i = result.getIterator();
-            while (i.hasMoreResources()) {
-                Resource resource = i.nextResource();
-                System.out.println((String) resource.getContent());
-            }
+            String query = String.format("for $x in /alumnos/alumno where $x/nombre = %s return update value $x with %s", x.getNombre(), x.toXML());
+            service.query(query);
 
             return true;
         } catch (Exception e) {
@@ -107,9 +100,9 @@ public class AlumnoDAO {
         }
     }
     
-    public boolean deleteAlumno(int id) throws XMLDBException{
+    public boolean deleteAlumno(String name) throws XMLDBException{
         try{
-            String query = String.format("for $x in /alumnos/alumno where $x/id = %s return xmldb:delete-node($x)", id);
+            String query = String.format("for $x in /alumnos/alumno where $x/id = %s return update delete", name);
             service.query(query);
             
             return true;

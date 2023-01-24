@@ -65,8 +65,18 @@ public class AlumnoGUI extends javax.swing.JFrame {
         });
 
         btnUpdate.setText("Actualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre");
 
@@ -225,6 +235,26 @@ public class AlumnoGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ERROR");
         } 
     }//GEN-LAST:event_btnAltaActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        try{
+            AlumnoDAO a = new AlumnoDAO();
+            a.deleteAlumno(txtNombre1.getText());
+            JOptionPane.showMessageDialog(this, "Borrado correctamente");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try{
+            AlumnoDAO a = new AlumnoDAO();
+            a.updateAlumno(new Alumno(0, Integer.parseInt(cmbEscuela.getSelectedItem().toString()), Integer.parseInt(txtTelefono.getText()), txtNombre1.getText(), txtNMatricula.getText()));
+            JOptionPane.showMessageDialog(this, "Actualizado correctamente");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments

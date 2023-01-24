@@ -61,8 +61,18 @@ public class CursoGUI extends javax.swing.JFrame {
         });
 
         btnUpdate.setText("Actualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +182,26 @@ public class CursoGUI extends javax.swing.JFrame {
         } 
 
     }//GEN-LAST:event_btnAltaActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        try{
+            CursoDAO x = new CursoDAO();
+            x.deleteCurso(Float.parseFloat(txtPrecio.getText()), Float.parseFloat(txtDuracion.getText()));
+            JOptionPane.showMessageDialog(this, "Borrado correctamente");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try{
+            CursoDAO x = new CursoDAO();
+            x.updateCurso(new Curso(0, 15.0f, 15.0f));
+            JOptionPane.showMessageDialog(this, "Actualizado correctamente");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments

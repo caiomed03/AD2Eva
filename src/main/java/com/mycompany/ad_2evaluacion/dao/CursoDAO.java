@@ -75,23 +75,17 @@ public class CursoDAO {
 
     public boolean updateCurso(Curso x) {
         try {
-            String query = String.format("for $x in //cursos/curso where $x/id = %d return update replace $x with %s", x.getId(), x.toXML());
-            ResourceSet result = service.query(query);
-            ResourceIterator i = result.getIterator();
-            while (i.hasMoreResources()) {
-                Resource resource = i.nextResource();
-                System.out.println((String) resource.getContent());
-            }
-
+            String query = String.format("for $x in /cursos/curso where $x/precio = %f and $x/duracion = %f return update value $x with %s", x.getPrecio(), x.getDuracion(), x.toXML());
+            service.query(query);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
     
-    public boolean deleteCurso(int id) throws XMLDBException{
+    public boolean deleteCurso(float precio, float duracion) throws XMLDBException{
         try{
-            String query = String.format("for $x in /cursos/curso where $x/id = %s return xmldb:delete-node($x)", id);
+            String query = String.format("for $x in /cursos/curso where $x/precio = %d and $x/duracion = %d return update delete $x", precio, duracion);
             service.query(query);
             
             return true;

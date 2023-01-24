@@ -71,8 +71,18 @@ public class MonitorGUI extends javax.swing.JFrame {
         });
 
         btnUpdate.setText("Actualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -195,6 +205,25 @@ public class MonitorGUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnAltaActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        try{
+            MonitorDAO x = new MonitorDAO();
+            x.deleteMonitor(txtNombre1.getText());
+            JOptionPane.showMessageDialog(this, "Borrado correctamente");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try{
+            MonitorDAO x = new MonitorDAO();
+            x.updateMonitor(new Monitor(0, Integer.parseInt(txtTelefono.getText()), txtNombre1.getText(), txtEmail.getText()));
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments

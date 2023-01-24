@@ -75,25 +75,17 @@ public class MonitorDAO {
 
     public boolean updateMonitor(Monitor x) {
         try {
-            String query = String.format("for $x in //monitores/monitor where $x/id = %d return update replace $x with %s", x.getId(), x.toXML());
-            ResourceSet result = service.query(query);
-            System.out.println("a");
-            // Iterate over the results
-            ResourceIterator i = result.getIterator();
-            while (i.hasMoreResources()) {
-                Resource resource = i.nextResource();
-                System.out.println((String) resource.getContent());
-            }
-
+            String query = String.format("for $x in /escuelas/escuela where $x/nombre = %s return update value $x with %s", x.getNombre(), x.toXML());
+            service.query(query);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
     
-    public boolean deleteMonitor(int id) throws XMLDBException{
+    public boolean deleteMonitor(String nombre) throws XMLDBException{
         try{
-            String query = String.format("for $x in /monitores/monitor where $x/id = %s return xmldb:delete-node($x)", id);
+            String query = String.format("for $x in /monitores/monitor where $x/nombre = %s return update delete $x", nombre);
             service.query(query);
             
             return true;

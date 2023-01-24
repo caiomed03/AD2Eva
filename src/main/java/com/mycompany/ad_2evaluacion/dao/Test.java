@@ -12,6 +12,10 @@ public class Test {
 //        System.out.println(a.createAlumno(new Alumno(1, 1, 638896940, "Caio", "123")));
 //        System.out.println(a.readAlumno());
 //        System.out.println(a.updateAlumno(new Alumno(1, 2, 2, "Eduardo", "1231")));
-            System.out.println(a.deleteAlumno(1));
+//            System.out.println(a.deleteAlumno(1));
+
+//        EscuelaDAO x = new EscuelaDAO();
+//        System.out.println(x.deleteEscuela(0));
+        System.out.println(a.updateAlumno(new Alumno(0, 1, 2333, "Edu", "12222")));
     }
 }

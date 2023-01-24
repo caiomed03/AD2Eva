@@ -74,8 +74,18 @@ public class EscuelaGUI extends javax.swing.JFrame {
         jLabel4.setText("Email");
 
         btnUpdate.setText("Actualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +206,25 @@ public class EscuelaGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
     }//GEN-LAST:event_btnAltaActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        try{
+            EscuelaDAO x = new EscuelaDAO();
+            x.deleteEscuela(txtDenominacion.getText());
+            JOptionPane.showMessageDialog(this, "Borrado correctamente");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try{
+            EscuelaDAO x = new EscuelaDAO();
+            x.updateEscuela(new Escuela(0, Integer.parseInt(txtTelefono.getText()), txtDenominacion.getText(), txtDireccion.getText(), txtEmail.getText()));
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "ERROR");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
