@@ -20,7 +20,7 @@ public class CRUD {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
         // Configuración de la base de datos
-        final String URI = "xmldb:exist://192.168.152.132:8080/exist/xmlrpc";
+        final String URI = "xmldb:exist://localhost:8080/exist/xmlrpc";
         final String driver = "org.exist.xmldb.DatabaseImpl";
 
         // Inicialización del driver
